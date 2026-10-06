@@ -1,2 +1,2 @@
-export const DepartmentList = [ 'Computer Science','Information Technology','Electronics and Communication', 'Civil', 'Mechanical']
+export const DepartmentList = [ 'Computer Science','Biology','Mathematics','Information Technology','Electronics and Communication', 'Civil', 'Mechanical']
 export const DepartmentList_options = DepartmentList.map(dept => ({ value: dept, label: dept }))
