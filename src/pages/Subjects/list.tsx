@@ -3,7 +3,6 @@ import { DataTable } from '@/components/refine-ui/data-table/data-table'
 import { Breadcrumb } from '@/components/refine-ui/layout/breadcrumb'
 import { ListView } from '@/components/refine-ui/views/list-view'
 import { Badge } from '@/components/ui/badge'
-import { Pagination } from '@refinedev/core' 
 import {
   Select,
   SelectContent,
@@ -11,8 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { DepartmentList_options } from '@/constant'
-import { subject } from '@/type'
+import { DEPARTMENT_OPTIONS } from '@/constant'
+import { Subject } from '@/type'
 import { useTable } from '@refinedev/react-table'
 
 import { ColumnDef } from '@tanstack/react-table'
@@ -25,8 +24,8 @@ function SubjectList() {
   const [selectedDepartment, setSelectedDepartment] = useState('all')
   const searchFilter = SearchQuery?[ {field :'name' ,operator: 'contains' as const, value: SearchQuery } ]:[]
   const departmentFilter = selectedDepartment == 'all' ? [] : [ {field :'department' ,operator: 'eq' as const, value: selectedDepartment } ]
-  const subjectTable = useTable<subject>({
-    columns: useMemo<ColumnDef<subject>[]>(() => [
+  const subjectTable = useTable<Subject>({
+    columns: useMemo<ColumnDef<Subject>[]>(() => [
       {
         id: 'code',
         accessorKey: 'code',
@@ -44,7 +43,7 @@ function SubjectList() {
       },
       {
         id: 'department',
-        accessorKey: 'department',
+        accessorKey: 'department.name',
         size: 200,
         header: () => <p className='column-titel ml-2'>Department</p>,
         cell: ({ getValue }) => <Badge variant='secondary'>{getValue<string>()}</Badge>, 
@@ -95,7 +94,7 @@ function SubjectList() {
 
                    <SelectContent>
                           <SelectItem value='all'>All Departments</SelectItem>
-                           {DepartmentList_options.map((department)=>(
+                           { DEPARTMENT_OPTIONS.map((department)=>(
                       <SelectItem key={department.value} value={department.value}>{department.label}</SelectItem>
                     
                    ))}

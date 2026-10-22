@@ -1,6 +1,6 @@
-import type { subject } from "@/type";
+import type { Subject } from "@/type";
 
-export const mockSubjects: subject[] = [
+export const mockSubjects: Subject[] = [
   {
     id: 1,
     code: "CS101",
