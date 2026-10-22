@@ -13,9 +13,9 @@ const options :CreateDataProviderOptions = {
     //   filters?.forEach(filter => {
     //     const field 
     // }
-    buildQueryParams:async ({resource,Pagination,filters}) =>{
-      const page = Pagination?.currentPage ?? 1
-      const pageSize = Pagination?.pageSize ?? 10
+       buildQueryParams:async ({resource,pagination,filters}) =>{
+      const page = pagination?.currentPage ?? 1
+      const pageSize = pagination?.pageSize ?? 10
       const params: Record<string , string|number> = {page,limit:pageSize}
       filters?.forEach((filter) => {
         const field = 'field' in filter ? filter.field : ''
